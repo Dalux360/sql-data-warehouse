@@ -1,0 +1,32 @@
+-- PROCEDURE: bronze.refresh_bronze_layer()
+
+-- DROP PROCEDURE IF EXISTS bronze.refresh_bronze_layer();
+
+CREATE OR REPLACE PROCEDURE bronze.refresh_bronze_layer(
+	)
+LANGUAGE 'plpgsql'
+AS 
+$$
+BEGIN
+  RAISE NOTICE '===============================================';
+  RAISE NOTICE 'Refreshing the Bronze Layer'; -- Flesh it out later this is the basic outline.
+  RAISE NOTICE '===============================================';
+
+  -- Example operation: truncate + load
+  -- TRUNCATE TABLE table_name;
+  -- COPY table_name [(column_list)] 
+  -- FROM 'file_path' 
+  -- WITH (FORMAT CSV, HEADER TRUE, DELIMITER ',');
+
+  RAISE NOTICE 'Bronze Layer refresh completed successfully.';
+
+EXCEPTION
+  WHEN OTHERS THEN
+    RAISE WARNING 'Error while refreshing Bronze Layer: %', SQLERRM;
+    -- Optional: log to an error table
+    -- INSERT INTO error_log(proc_name, error_message, error_time)
+    -- VALUES('Refresh_Bronze_layer', SQLERRM, NOW());
+END;
+$BODY$;
+ALTER PROCEDURE bronze.refresh_bronze_layer()
+    OWNER TO postgres;
